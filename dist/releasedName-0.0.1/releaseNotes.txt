@@ -1,0 +1,2 @@
+- readme with usage doc
+- a bash script to create a new release in a dist/ directory containing release notes and make a new git annoted tag, everything with sementic versioning
