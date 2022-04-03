@@ -2,23 +2,13 @@
 
 releasedName='releasedName'
 
-echo ''
+source simple_args_parsing.bash
 
-if [[ $# -ne 1 ]]
-then
-    echo 'ERROR : missing version number'
-    bash usage.bash
-    exit -1
-fi
+parseArgs $@
 
-if ! [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
-then
-    echo 'ERROR : version format does not match X.Y.Z (Major.Minor.Patch)'
-    bash usage.bash
-    exit -1
-fi
+echo 'mamaamamama'
 
-bash simple_args_parsing.sh $@
+exit
 
 version=$1
 releaseVersionedName=$releasedName-$version
