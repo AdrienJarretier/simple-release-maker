@@ -7,5 +7,5 @@ outputDirName=$1
 
 for filePath in ${inputFiles[@]}
 do
-    cp $filePath $outputDirName
+    cp $filePath "$outputDirName/"
 done
