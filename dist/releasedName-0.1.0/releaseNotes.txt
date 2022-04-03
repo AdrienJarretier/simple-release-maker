@@ -1,0 +1,5 @@
+- add copied files or compiled file to git
+- if option --copy is given, copy files from array in make.copy.bash
+- compilation of js files if -c js is given
+- -h and --help options parsed , will display usage, [-c <fileType>] option parsed, will run make.<fileType>.bash
+- usage documation
