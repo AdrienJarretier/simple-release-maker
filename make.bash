@@ -2,15 +2,43 @@
 
 releasedName='releasedName'
 
-source simple_args_parsing.bash
 
-parseArgs $@
+source usage.bash
 
-echo 'mamaamamama'
+echo ''
 
-exit
+if [[ $# -lt 1 ]]
+then
+    echo 'ERROR : missing version number'
+    usage
+    exit -1
+fi
 
-version=$1
+if [[ "$1" =~ -h|--help ]]
+then
+    usage
+    exit
+elif ! [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+then
+    echo 'ERROR : version format does not match X.Y.Z (Major.Minor.Patch)'
+    usage
+    exit -1
+else
+    version=$1
+fi
+
+while [ "$2" != "" ]; do
+    PARAM=$2
+    VALUE=$3
+    case $PARAM in
+        -c)
+            compileOptionGiven=1
+            releasedExtension=$VALUE
+            ;;
+    esac
+    shift 2
+done
+
 releaseVersionedName=$releasedName-$version
 outputDirName=dist/$releaseVersionedName
 
@@ -23,6 +51,11 @@ else
 fi
 
 mkdir -p $outputDirName
+
+if [[ -v compileOptionGiven && compileOptionGiven -eq 1 ]]
+then
+    bash make.$releasedExtension.bash $releaseVersionedName $releasedExtension $outputDirName
+fi
 
 last_tag=$(git describe --tags --abbrev=0 2>/dev/null)
 git log $(
