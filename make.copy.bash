@@ -4,13 +4,9 @@ inputFiles=(
     "./make.copy.bash"
 )
 
-releaseVersionedName=$1
-releasedExtension=$2
-outputDirName=$3
+outputDirName=$1
 
 for filePath in ${inputFiles[@]}
 do
-    cp
-    cat $filePath >> $outputDirName/$outputFileName
-    echo '' >> $outputDirName/$outputFileName
+    cp $filePath $outputDirName
 done

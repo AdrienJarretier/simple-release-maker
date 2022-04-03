@@ -3,9 +3,14 @@ inputFiles=(
     "./testsFiles/jsInput/input2.js"
 )
 
-outputDirName=$1
+releaseVersionedName=$1
+releasedExtension=$2
+outputDirName=$3
+
+outputFileName=$releaseVersionedName.$releasedExtension
 
 for filePath in ${inputFiles[@]}
 do
-    cp $filePath "$outputDirName/"
+    cat $filePath >> $outputDirName/$outputFileName
+    echo '' >> $outputDirName/$outputFileName
 done
