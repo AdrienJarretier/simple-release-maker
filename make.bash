@@ -6,14 +6,19 @@ echo ''
 
 if [[ $# -ne 1 ]]
 then
-    echo 'missing version number'
+    echo 'ERROR : missing version number'
+    bash usage.bash
     exit -1
 fi
+
 if ! [[ "$1" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
 then
-    echo 'version format does not match X.Y.Z (Major.Minor.Patch)'
+    echo 'ERROR : version format does not match X.Y.Z (Major.Minor.Patch)'
+    bash usage.bash
     exit -1
 fi
+
+bash simple_args_parsing.sh $@
 
 version=$1
 releaseVersionedName=$releasedName-$version
