@@ -14,3 +14,5 @@ do
     cat $filePath >> $outputDirName/$outputFileName
     echo '' >> $outputDirName/$outputFileName
 done
+
+git add $outputDirName/$outputFileName
