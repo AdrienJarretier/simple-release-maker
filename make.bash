@@ -9,6 +9,7 @@ function usage()
     echo ""
     echo "  -h --help"
     echo -e "  -c <fileType> \t If option is given, compile files using make.<fileType>.bash"
+    echo -e "  --copy  \t If given, copy files from array in make.copy.bash to release dir"
     echo ""
 }
 
@@ -42,6 +43,9 @@ while [ "$2" != "" ]; do
             compileOptionGiven=1
             releasedExtension=$VALUE
             ;;
+        --copy)
+            copyOptionGiven=1
+            ;;
     esac
     shift 2
 done
@@ -62,6 +66,11 @@ mkdir -p $outputDirName
 if [[ -v compileOptionGiven && compileOptionGiven -eq 1 ]]
 then
     bash make.$releasedExtension.bash $releaseVersionedName $releasedExtension $outputDirName
+fi
+
+if [[ -v copyOptionGiven && copyOptionGiven -eq 1 ]]
+then
+    bash make.copy.bash $outputDirName
 fi
 
 last_tag=$(git describe --tags --abbrev=0 2>/dev/null)
