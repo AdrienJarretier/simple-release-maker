@@ -1,6 +1,6 @@
 #!/bin/bash
 
-releasedName='releasedName'
+releasedName='simple-release-maker'
 
 function usage()
 {
@@ -63,14 +63,15 @@ fi
 
 mkdir -p $outputDirName
 
+BASEDIR=$(dirname $0)
 if [[ -v compileOptionGiven && compileOptionGiven -eq 1 ]]
 then
-    bash make.$releasedExtension.bash $releaseVersionedName $releasedExtension $outputDirName
+    bash $BASEDIR/make.$releasedExtension.bash $releaseVersionedName $releasedExtension $outputDirName
 fi
 
 if [[ -v copyOptionGiven && copyOptionGiven -eq 1 ]]
 then
-    bash make.copy.bash $outputDirName
+    bash $BASEDIR/make.copy.bash $outputDirName
 fi
 
 last_tag=$(git describe --tags --abbrev=0 2>/dev/null)
