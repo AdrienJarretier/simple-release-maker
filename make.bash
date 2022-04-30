@@ -26,7 +26,7 @@ if [[ "$1" =~ -h|--help ]]
 then
     usage
     exit
-elif ! [[ "$1" =~ ^(?:pre-)?[0-9]+\.[0-9]+\.[0-9]+$ ]]
+elif ! [[ "$1" =~ ^(pre-)?[0-9]+\.[0-9]+\.[0-9]+$ ]]
 then
     echo 'ERROR : version format does not match X.Y.Z (Major.Minor.Patch)'
     usage
