@@ -1,0 +1,2 @@
+- fixed version regex with prefix pre-
+- version format now accepts a prefix pre- for pre-releases
